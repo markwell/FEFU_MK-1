@@ -1,0 +1,86 @@
+.container {
+    width: 100%;
+}
+.calendar_day {
+    overflow: hidden;
+    background-color: rgba(138,189,255,0.4);
+    height: 10%;
+    border-right: solid 1px #ffffff;
+    border-bottom: solid 1px #ffffff;
+    padding: 4px;
+}
+.day {
+    height: 15%;
+}
+.calendar_day:hover {
+    background-color: white;
+}
+.down .calendar_day { border-bottom: none; }
+.date {
+    height: 20%;
+}
+.list_events{
+    height: 80%;
+    overflow-y: scroll;
+    word-wrap: break-word;
+    margin-right: -30px;
+    padding-right:  30px;
+}
+.scroll_image {
+    opacity: 0;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    height: 10px;
+    width: 40px;
+    background-image: url(../images/scroll.png);
+    background-size: cover;
+}
+
+.form_container {
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+#event_name {
+    width: 65%;
+}
+#date {
+    width: 30%;
+    float: right;
+}
+#members_id,#description,#task,#group_name {
+    width: 100%;
+}
+
+.form-group > input {
+    display: inline-block;
+}
+.form-group > button {
+    margin-top: 5px;
+}
+form {
+    /*добавление события*/
+    background-color: white; 
+    padding: 10px;
+    width: 40%;
+    /*border: solid 1px #000000;*/
+    position: relative;
+    margin: auto;
+}
+.create_event_show {
+}
+.margintimetable {
+    margin-bottom: 100px;
+}
+#event_form {
+    margin-top: 10%;
+    padding: 20px;
+    padding-top: 5px;
+    border-radius: 5px;
+    width: 50%;
+}
