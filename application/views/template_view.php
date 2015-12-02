@@ -7,9 +7,9 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <meta http-equiv="Cache-Control" content="private">
 	  <title>Мастер-Классы</title>
-	  <link href="/css/bootstrap.css" rel="stylesheet">
+	  <link href="/shop/css/bootstrap.css" rel="stylesheet">
 	  <!-- Стиль для календаря -->
-	  <link href="/css/timetable_style.css" rel="stylesheet"> 
+	  <link href="/shop/css/timetable_style.css" rel="stylesheet"> 
 	  
    </head>
 
