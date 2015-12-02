@@ -7,9 +7,9 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <meta http-equiv="Cache-Control" content="private">
 	  <title>Мастер-Классы</title>
-	  <link href="/css/bootstrap.css" rel="stylesheet">
+	  <link href="/shop/css/bootstrap.css" rel="stylesheet">
 	  <!-- Стиль для календаря -->
-	  <link href="/css/timetable_style.css" rel="stylesheet"> 
+	  <link href="/shop/css/timetable_style.css" rel="stylesheet"> 
 	  
    </head>
 
@@ -44,13 +44,13 @@
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="/js/jquery.min.js"></script>
+	<script src="/shop/js/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="/js/bootstrap.js"></script>
-	<script src="/js/main_create_dates.js"></script>
-	<script src="/js/main_update_height.js"></script>
-	<script src="/js/main_scrolling.js"></script>
-	<script src="/js/moment.js"></script>
+	<script src="/shop/js/bootstrap.js"></script>
+	<script src="/shop/js/main_create_dates.js"></script>
+	<script src="/shop/js/main_update_height.js"></script>
+	<script src="/shop/js/main_scrolling.js"></script>
+	<script src="/shop/js/moment.js"></script>
 
    </body>
 </html>
