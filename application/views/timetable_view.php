@@ -14,9 +14,16 @@
                 <textarea id="task" name="taskFF" class="form-control" placeholder="Описание задания к событию (если есть)"></textarea>
             </div>
             <div class="form-group text-center">
+<<<<<<< HEAD
               <label for="exampleInputPassword2">Номер группы</label><br/>
               <div class="btn-group">
               <p><select size="1" name="groupFF" class="btn  dropdown-toggle">
+=======
+              
+              <div class="btn-group">
+              <p>Название группы:
+              <select size="1" name="groupFF" class="btn  dropdown-toggle">
+>>>>>>> arturbutakov/master
                   <?php
                     for ($i=1; $i <= count($HTTP_POST_VARS); $i++) { 
                       if (isset($HTTP_POST_VARS[$i]['name']))  {
@@ -50,7 +57,11 @@
         while ($i<19)
         { 
            echo ' 
+<<<<<<< HEAD
            <div class="col-md-3 calendar_day">
+=======
+           <div class="col-md-2 calendar_day">
+>>>>>>> arturbutakov/master
                <div class="date">
                    <p class="lead">'.$date.'</p>
                </div>
@@ -59,7 +70,7 @@
                    <span>';
                    foreach ($data as $key) {
                     if ($key['date'] == $currentdate) {
-                    echo '<a href="/shop/user/showevent?id='.$key['id'].'">'.$key['name']."</a><br />";
+                    echo '<a class="btn" href="/shop/user/showevent?id='.$key['id'].'">'.$key['name']."</a><br />";
                     }
                    }
                  echo "  

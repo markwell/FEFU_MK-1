@@ -28,29 +28,6 @@
 		</div>
 <br/><br/>
 <?php if (count($data['rating']) != 0) { ?> <!-- проверяем на наличие элементов -->	
-	<!-- <div>
-	
-	<div class="col-lg-3 centered">
-	</div>
-
-	<div class="col-lg-3 centered">
-		<?php foreach ($data['rating'] as $row) {
-			//print '<h4><i>'.$row['user_login']."</i></h4>";
-			foreach ($data['info'] as $ro) {
-				if ($ro['user_login'] == $row['user_login']) {
-					print '<h4><i>'.$ro['family_name'].' '.$ro['name']."</i></h4>";
-				}
-				
-			}
-		}?>
-	</div>
-
-	<div class="col-lg-3 centered">
-		<?php foreach ($data['rating'] as $row) {
-			print '<h4><i>'.$row['user_rating']."</i></h4>";
-		}?>
-	</div>
-	</div> -->
 	<div class="col-lg-3 centered">
 	</div>
 	<div class="col-lg-6 centered">

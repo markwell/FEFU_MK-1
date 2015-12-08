@@ -1,3 +1,6 @@
+.width50 {
+  width: 30%;
+}
 
 select:hover,
 select:focus,
@@ -6,6 +9,27 @@ select.active {
   color: #333333;
   background-color: #ffffff;
   border-color: #cccccc;
+}
+
+.btnn {
+  display: inline-block;
+  padding: 0px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
 }
 
 .border {
@@ -2319,7 +2343,7 @@ fieldset[disabled] .btn {
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
   color: #333333;
-  background-color: #ebebeb;
+  background-color: rgba(0, 0, 0, 0.025);
   border-color: #adadad;
 }
 
