@@ -167,18 +167,41 @@ class Controller_User extends Controller
     }
     function action_getCabinetAndShow()
     {
+        
+        //$root = $this->checkHash();
         @$login = $_GET['login'];
-
         if (empty($login)) //проверяем наличие логина в строке и куках
         {
           $this->view->generate('login_view.php', 'template_view.php'); //отправляем на авторизацию
         } else {
           $info = $this->model->getCabinet($login); //вытаскиваем контактную информацию пользователя
+          $users = $this->model->getHashAndID($_COOKIE['id']);
+          $theCategory = $this->model->getTheCategory($users['group_id']);
           $roots = $this->model->checkRoots(); //проверяем права админа
           if ($roots == '1') {
             $unconfirmedUsers = $this->model->getUnconfirmedUsers(); //вытаскиваем неподтвержденных пользователей
+            $unconfirmedInfo = $this->model->getInfo();
+            $category = $this->model->getCategory();
           }
-          $this->view->generate('cabinet_view.php', 'template_view.php', array('info' => $info,'roots' => $roots, 'unconfirmedUsers' => $unconfirmedUsers));//передаем View
+          $this->view->generate('cabinet_view.php', 'template_view.php', array('info' => $info, 'users' => $users, 'theCategory' => $theCategory, 'roots' => $roots, 'unconfirmedUsers' => $unconfirmedUsers, 'unconfirmedInfo' => $unconfirmedInfo, 'category' => $category));//передаем View
         }   
+    }
+    function checkHash()
+    {
+        $userdata = $this->model->getHashAndID(intval($_COOKIE['id']));
+        if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) {
+            if (($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['user_id'] !== $_COOKIE['id'])) {
+                setcookie("id", "", time() - 3600*24*30*12, "/");
+                setcookie("username", "", time() - 3600*24*30*12, "/");
+                setcookie("hash", "", time() - 3600*24*30*12, "/");
+                $message = "Авторизуйтесь пожалуйста.";
+                $this->view->generate('login_view.php', 'template_view.php', $message);
+            } else {
+                return 1;
+            }
+        } else {
+            $message = "Пожалуйста, включите куки.";
+            $this->view->generate('login_view.php', 'template_view.php', $message);
+        }
     }
 }
