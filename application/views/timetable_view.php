@@ -3,7 +3,7 @@
         <form id="event_form" method="POST" action="/shop/timetable/addevent">
         <h3>Добавление события</h3>
             <div class="form-group">
-                <input type="email" name="nameFF" class="form-control" id="event_name" placeholder="Название события">
+                <input type="text" name="nameFF" class="form-control" id="event_name" placeholder="Название события">
                 <input type="date" name="dateFF" class="form-control" id="date" placeholder="YYYY-MM-DD">
             </div>
             <div class="form-group">

@@ -31,7 +31,7 @@ class Controller_Timetable extends Controller
     function action_addEvent()
     {   
         if (isset($_POST['submit'])) {
-            $this->model->addEvent($_POST['nameFF'],$_POST['dateFF'],$_POST['descriptionFF'],$_POST['taskFF'], $_POST['groupFF']);
+            $this->model->addEvent($_POST['nameFF'],$_POST['dateFF'],$_POST['descriptionFF'],$_POST['taskFF'], $_POST['groupFF'], $_COOKIE['id']);
             header('Location:/shop/timetable/showTimetable');
         }
     }
