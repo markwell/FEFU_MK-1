@@ -6,7 +6,7 @@
 		<form role="form" method="POST" action="/shop/user/newuser">
 
 		  <div class="form-group text-center">
-		    <label for="exampleInputPassword2">Номер группы</label><br/>
+		    <label for="exampleInputPassword2">Название группы</label><br/>
 		    <div class="btn-group">
 		    <p><select size="1" name="group" class="btn  dropdown-toggle">
 		        <option value="0" selected>Не знаю в какой я группе</option>

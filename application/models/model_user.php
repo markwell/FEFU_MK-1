@@ -145,13 +145,29 @@ class Model_User extends Model
     }
     public function updateMarks($user_id ,$mark, $event_id)
     {
-        $error = "";
-            $query = $this->DBH->prepare("UPDATE marks SET mark=:mark WHERE user_id=:user_id AND event_id=:event_id");
-            $query->bindParam(':mark', $mark);
-            $query->bindParam(':user_id', $user_id);
-            $query->bindParam(':event_id', $event_id);
-            $query->execute();
-            return null;
+        $array = $this->getHashAndID($user_id); //берем текущие данные ученика и записываем в массив
+        $user_rating = $array['user_rating']; //берем только рейтинг
+
+        $quer = $this->DBH->prepare("SELECT mark FROM marks WHERE event_id=:event_id AND user_id=:user_id LIMIT 1");
+        $quer->bindParam(':event_id', $event_id);
+        $quer->bindParam(':user_id', $user_id);
+        $quer->execute();
+        $result = $quer->fetchAll(PDO::FETCH_ASSOC);
+
+        $user_rating -= $result['0']['mark']; //вычисляем новый рейтинг
+        $user_rating += $mark;
+
+        $query = $this->DBH->prepare("UPDATE users SET user_rating=:user_rating WHERE user_id=:user_id");
+        $query->bindParam(':user_rating', $user_rating);
+        $query->bindParam(':user_id', $user_id);
+        $query->execute();
+
+        $query = $this->DBH->prepare("UPDATE marks SET mark=:mark WHERE user_id=:user_id AND event_id=:event_id");
+        $query->bindParam(':mark', $mark);
+        $query->bindParam(':user_id', $user_id);
+        $query->bindParam(':event_id', $event_id);
+        $query->execute();
+        return null;
     }
     public function updateVisited($user_id ,$mark, $event_id)
     {
@@ -162,6 +178,20 @@ class Model_User extends Model
             $query->bindParam(':event_id', $event_id);
             $query->execute();
             return null;
+    }
+    public function updateUsers($user_id)
+    {
+        $query = $this->DBH->prepare("UPDATE users SET user_status='1' WHERE user_id=:user_id");
+        $query->bindParam(':user_id', $user_id);
+        $query->execute();
+        return null; 
+    }
+    public function deleteUsers($user_id)
+    {
+        $query = $this->DBH->prepare("DELETE FROM users WHERE user_id=:user_id");
+        $query->bindParam(':user_id', $user_id);
+        $query->execute();
+        return null; 
     }
     public function logOut()
     {

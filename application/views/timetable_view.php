@@ -1,16 +1,33 @@
-
+<?php global $HTTP_POST_VARS; ?>
+  <h2>Расписание</h2><br>
 <div class="form_container">
         <form id="event_form" method="POST" action="/shop/timetable/addevent">
         <h3>Добавление события</h3>
             <div class="form-group">
-                <input type="email" name="nameFF" class="form-control" id="event_name" placeholder="Название события">
+                <input type="text" name="nameFF" class="form-control" id="event_name" placeholder="Название события">
                 <input type="date" name="dateFF" class="form-control" id="date" placeholder="YYYY-MM-DD">
             </div>
             <div class="form-group">
-                <textarea id="description" name="descriptionFF" placeholder="Описание события"></textarea>
+                <textarea id="description" name="descriptionFF" class="form-control" placeholder="Описание события"></textarea>
             </div>
             <div class="form-group">
-                <textarea id="task" name="taskFF" placeholder="Описание задания к событию (если есть)"></textarea>
+                <textarea id="task" name="taskFF" class="form-control" placeholder="Описание задания к событию (если есть)"></textarea>
+            </div>
+            <div class="form-group text-center">
+              
+              <div class="btn-group">
+              <p>Название группы:
+              <select size="1" name="groupFF" class="btn  dropdown-toggle">
+                  <?php
+                    for ($i=1; $i <= count($HTTP_POST_VARS); $i++) { 
+                      if (isset($HTTP_POST_VARS[$i]['name']))  {
+                  ?>
+                  <option value="<?php echo $HTTP_POST_VARS[$i]['id'];?>"><?php echo $HTTP_POST_VARS[$i]['name'];?></option>
+                  <?php 
+                    } } unset($HTTP_POST_VARS); 
+                  ?>
+              </select></p>
+              </div>
             </div>
             <div class="form-group">
                 <button type="submit" name="submit" class="btn btn-default">Добавить</button>
@@ -30,19 +47,20 @@
         $d = 1;
         $i = 1;
         $currentdate = date('Y-m-d');
-        while ($i<20)
+        $date = date('jS MS');
+        while ($i<19)
         { 
            echo ' 
-           <div class="col-md-1 calendar_day">
+           <div class="col-md-2 calendar_day">
                <div class="date">
-                   '.$currentdate.'
+                   <p class="lead">'.$date.'</p>
                </div>
                <div class="scroll_image"></div>
                <div class="list_events">
                    <span>';
                    foreach ($data as $key) {
                     if ($key['date'] == $currentdate) {
-                    echo '<a href="/shop/user/showevent?id='.$key['id'].'">'.$key['name']."</a><br />";
+                    echo '<a class="btn" href="/shop/user/showevent?id='.$key['id'].'">'.$key['name']."</a><br />";
                     }
                    }
                  echo "  
@@ -50,6 +68,7 @@
                </div>
            </div>";
            $currentdate = date ('Y-m-d', strtotime ('+'.$i.' days'));
+           $date = date('jS MS', strtotime ('+'.$i.' days'));
            $d++;
            $i++;
         }

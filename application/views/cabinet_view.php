@@ -1,5 +1,5 @@
 <div class="form_container">
-<form id="event_form" role="form" method="POST" action="/shop/user/showEvent?id=<?php print $data['event']['0']['id'];?>&edit=1">
+<form id="event_form" role="form" method="POST" action="/shop/user/confirmation">
 <h3>Подтверждение подлинности </h3>
   <table class="table text-center">
   	<tr>
@@ -31,19 +31,16 @@
     		?>
     	</td>
     	<td>
-    		<?php $i = 1;
-    		foreach ($data['unconfirmedUsers'] as $row) {
-    			print '
+    		<?php 
+    		foreach ($data['unconfirmedUsers'] as $row) { ?>
     				<div class="btn-group">
-    				<p><select size="1" name="group" class="btnn  dropdown-toggle">
-    				    <option value="3" selected>Решить позже</option>
+    				<p><select size="1" name=" <?php print $row['user_id']; ?>" class="btnn  dropdown-toggle">
+    				    <option value="0" selected>Решить позже</option>
     				    <option value="1">Подтвердить</option>
-    				    <option value="0">Отклонить</option>
+    				    <option value="2">Отклонить</option>
     				</select></p>
     				</div><br/>
-    			';
-    			$i++;
-    		}?>
+    			<?php } ?>
     	</td>
     </tr>
   </table>
@@ -58,27 +55,31 @@
 		  	<h1><i> 
 		  		<?php print $data['info']['0']['name'].' '.$data['info']['0']['family_name']; 
 		  		if ($data['roots']=='1') {
-		  			print '<span class="label label-success">Staff</span>';
+		  			print '<span class="label label-success">admin</span>';
 		  		}
 		  		?>
 		  	</i></h1>
 		  	<br/>
-		  	<?php if ($data['roots']=='1') {
-		 		echo '<span class="create_event_show btn btn-default">Показать список новых участников</span><br/>';
-		 	}?>
-		  	<h4>Группа: <b><?php print $data['theCategory']['0']['name'];?></b></h4>
-		  	<h4>Почтовый ящик: <b><?php print $data['info']['0']['email'];?></b></h4>
-		  	<h4>Номер телефона: <b><?php print $data['info']['0']['phone_number'];?></b></h4>
+		  	<?php if ($data['roots']=='1') { ?> <!-- только для админов -->
+		 		<span class="create_event_show btn btn-default">Показать список новых участников</span><br/><hr/>
+		 		<span class="create_event_show btn btn-default">Создать группу</span>
+		 		<span class="create_event_show btn btn-default">Удалить группу</span><hr/>
 
-		  	<h4>Прогресс: <b><?php print $data['users']['user_rating'].' ';?></b>балл(ов)</h4>
-		  	<div class="progress progress-striped active width50">
-		  	  <div class="progress-bar"  role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php print $data['users']['user_rating'].'%';?>">
-		  	  
-		  	  </div>
-		  	</div>
+		 	<?php }
+		 	if ($data['roots']=='0') { ?> <!-- только для учеников -->
+			  	<h4>Группа: <b><?php print $data['theCategory']['0']['name'];?></b></h4>
+			  	<h4>Почтовый ящик: <b><?php print $data['info']['0']['email'];?></b></h4>
+			  	<h4>Номер телефона: <b><?php print $data['info']['0']['phone_number'];?></b></h4>
 
-		  	<br/>
-		  <a class="btn btn-default" href="/shop/user/edituser">Изменить информацию</a>
+			  	<h4>Прогресс: <b><?php print $data['users']['user_rating'].' ';?></b>балл(ов)</h4>
+			  	<div class="progress progress-striped active width50">
+			  	  <div class="progress-bar"  role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php print $data['users']['user_rating'].'%';?>">
+			  	  </div>
+			  	</div>
+		  	<?php } 
+		  if ($data['roots']=='0') { ?>
+		  	<a class="btn btn-default" href="/shop/user/edituser">Изменить информацию</a>
+		  <?php } ?>
 		  <a class="btn btn-default" href="/shop/user/logoutuser">Выход из профиля</a>
 		 </div>
 		 <div>

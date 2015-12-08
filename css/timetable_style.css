@@ -3,11 +3,13 @@
 }
 .calendar_day {
     overflow: hidden;
-    background-color: rgba(138,189,255,0.4);
+    background-color: rgba(138,189,255,0.3);
     height: 10%;
     border-right: solid 1px #ffffff;
     border-bottom: solid 1px #ffffff;
-    padding: 4px;
+    padding: 6px;
+    margin:5px;
+    border-radius: 10px; 
 }
 .day {
     height: 15%;

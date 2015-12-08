@@ -47,7 +47,7 @@ class Controller_User extends Controller
                         $error1 = $this->model->updateMarks($row['user_id'], $_POST[m.$row['user_id']], $_GET['id']);    
                     }
                 }
-                header('Location:/shop/user/showEvent?id=1');
+                header('Location:/shop/user/showEvent?id='.$_GET['id']);
             } else {
                 $this->view->generate('main_view.php', 'template_view.php');
             }
@@ -61,6 +61,21 @@ class Controller_User extends Controller
                 'roots' => $roots,
                 'group' => $group));
         }
+    }
+    function action_confirmation()
+    {
+        $users = $this->model->getUnconfirmedUsers();
+        foreach ($users as $row) {
+            if ($_POST[$row['user_id']] !== '0') { //подтвердить позже
+                if ($_POST[$row['user_id']] == '1') { //подтверждение
+                    $error = $this->model->updateUsers($row['user_id']);    
+                }   
+                if ($_POST[$row['user_id']] == '2') { //отклонение
+                    $error = $this->model->deleteUsers($row['user_id']);    
+                }    
+            }
+        }
+        header('Location:/shop/user/getCabinetAndShow?login='.$_COOKIE['username']);
     }
     function action_newUser()
     {
