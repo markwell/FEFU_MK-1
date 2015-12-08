@@ -6,6 +6,12 @@ class Controller_Timetable extends Controller
     {
         $this->model = new Model_Timetable();
         $this->view  = new View();
+        $category = $this->model->getCategory();
+        global $HTTP_POST_VARS;
+        for ($i = 1; $i <= count($category); $i++) 
+        {
+            $HTTP_POST_VARS[$i] = $category[$i - 1];
+        }
     }
     function checkRoot()
     {
@@ -25,7 +31,8 @@ class Controller_Timetable extends Controller
     function action_addEvent()
     {   
         if (isset($_POST['submit'])) {
-            $this->model->addEvent($_POST['nameFF'],$_POST['dateFF'],$_POST['descriptionFF'],$_POST['taskFF']);
+            echo $_POST['groupFF'];
+            $this->model->addEvent($_POST['nameFF'],$_POST['dateFF'],$_POST['descriptionFF'],$_POST['taskFF'], $_POST['groupFF']);
             header('Location:/shop/timetable/showTimetable');
         }
     }
