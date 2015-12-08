@@ -17,14 +17,14 @@
 		</div>
 		
 		<div class="col-lg-3 centered">
-			<a href="/shop/timetable/showtimetable"><img class="img img-circle" src="/images/icon1.png" height="120px" width="120px" alt=""></a>
+			<a href="/shop/timetable/showtimetable"><img class="img img-circle" src="/shop/images/icon1.png" height="120px" width="120px" alt=""></a>
 			<br>
 			<h4><b><a href="/shop/timetable/showtimetable" style="font-size:20px; color:#333;">Расписание</a></b></h4>
 			<p><i>Календарь с рассписанием предстоящих занятий и мероприятий, проходящих в рамках мастер-класса.</i></p>
 		</div>
 
 		<div class="col-lg-3 centered">
-			<a href="/shop/user/getratingandshow"><img class="img img-circle" src="/images/icon2.png" height="120px" width="120px" alt=""></a>
+			<a href="/shop/user/getratingandshow"><img class="img img-circle" src="/shop/images/icon2.png" height="120px" width="120px" alt=""></a>
 			<br>
 			<h4><b><a href="/shop/user/getratingandshow" style="font-size:20px; color:#333;">Рейтинг</a></b></h4>
 			<p><i>Рейтинговые таблицы участников мастер-класса, отображающие их посещаемость и успеваемость.</i></p>
