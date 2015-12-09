@@ -24,4 +24,18 @@ $(document).ready(function() {
     $('#event_form').bind('click', function(e) {
         e.stopPropagation();
     })
+
+    $('.form_container2').bind('click',function(e) {
+        $(this).css({
+            'display': 'none'
+        });
+    });
+    $('.create_event_show2').bind('click',function(e) {
+        $('.form_container2').css({
+            'display': 'block'
+        });
+    });
+    $('#event_form2').bind('click', function(e) {
+        e.stopPropagation();
+    })
 });

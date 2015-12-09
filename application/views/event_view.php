@@ -1,8 +1,6 @@
 	<div class="container">
 		<!-- <div class="col-lg-1 centered">
 		</div> -->
-		
-	 
 		<div class="col-lg-4 centered">
 			<h5>
 				Группа: 
@@ -19,7 +17,6 @@
 				</i></b>
 			</h5>
 		</div>
-
 		<div class="col-lg-4 centered">
 			<h5>	
 				Преподаватель:
@@ -50,7 +47,6 @@
 
 	
 
-		        
 
 	<div class="form_container">
 	<form id="event_form" role="form" method="POST" action="/shop/user/showEvent?id=<?php print $data['event']['0']['id'];?>&edit=1">
@@ -84,7 +80,12 @@
 	    		<?php foreach ($data['users'] as $row) {
 	    			foreach ($data['marks'] as $ro) {
 	    				if ($ro['user_id'] == $row['user_id']) {
-	    					print '<input type="login" class="form-control" size="2" name="'.$ro['user_id'].'" placeholder="'.$ro['visited'].'">';
+	    					print '<input type="checkbox" class="form-controll" value="1" name="'.$ro['user_id'].'"';
+	    					if ($ro['visited'] == '1') {
+	    						print ' checked>';
+	    					} else {
+	    						print '>';
+	    					}
 	    				}
 	    				
 	    			}
@@ -152,6 +153,7 @@
 	    				if ($ro['user_id'] == $row['user_id']) {
 	    					print '<h4><i>'.$ro['mark']."</i></h4>";
 	    				}
+	    				
 	    			}
 	    		}?>
 	    	</td>
@@ -164,11 +166,12 @@
 	</div>
 	</div>
 	<?php if ($data['roots']=='1') {
-		echo '<span class="create_event_show btn btn-default">Проставить оценки</span>';
-		echo '<form method="POST" action="/shop/timetable/deleteevent?id='.$_GET['id'].'">
-		            <div class="form-group">
-		                <button type="submit" name="submit" class="btn btn-default">Удалить событие</button>
-		            </div>
-		        </form>';
+		echo '
+		<form method="POST" action="/shop/timetable/deleteevent?id='.$_GET['id'].'">
+		    <div class="form-group">
+		    	<span class="create_event_show btn btn-default">Проставить оценки</span>
+		        <input type="submit" name="submit" class="btn btn-default" value="Удалить событие">
+		    </div>
+		</form>';
 	}
 	} else echo '<h4 class="media-heading container text-center">Запрос не содержит элементов</h4>'?>

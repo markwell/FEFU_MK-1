@@ -12,12 +12,12 @@
 		  	<li><a href="/shop/user/getRatingAndShow">Общий рейтинг</a></li>
 		    <?php
 		    	for ($i=1; $i <= count($HTTP_POST_VARS); $i++) { 
-		    		if (isset($HTTP_POST_VARS[$i]))  {
+		    		if (isset($HTTP_POST_VARS[$i]['name']))  {
 		    ?>
 		    <li>
-		    	<a href=" <?php echo '/shop/user/getRatingAndShow?group='.$i;?> ">
+		    	<a href=" <?php echo '/shop/user/getRatingAndShow?group='.$HTTP_POST_VARS[$i]['id'];?> ">
 		    		<?php 
-		    			echo $HTTP_POST_VARS[$i]; 
+		    			echo $HTTP_POST_VARS[$i]['name']; 
 		    		?>
 		    	</a>
 		    </li>

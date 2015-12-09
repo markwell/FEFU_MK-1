@@ -40,11 +40,31 @@ class Model_Timetable extends Model
     }
     public function deleteEvent($eventID)
     {
-        $query = $this->DBH->prepare("DELETE FROM event WHERE id=:ID");
-        $query->bindParam(':ID', $eventID);
-        $query->execute();
-        $query = $this->DBH->prepare("DELETE FROM marks WHERE event_id=:event_id");
+        $query = $this->DBH->prepare("SELECT * FROM marks WHERE event_id=:event_id"); //выборка оценок, чтобы их вычесть из рейтинга
         $query->bindParam(':event_id', $eventID);
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($result as $row) {
+            $query = $this->DBH->prepare("SELECT * FROM users WHERE user_id=:user_id LIMIT 1"); //в цикле запрашиваем по каждому user_id в таблицу users
+            $query->bindParam(':user_id', $row['user_id']);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            $result['0']['user_rating'] -= $row['mark'];
+
+            $query = $this->DBH->prepare("UPDATE users SET user_rating=:user_rating WHERE user_id=:user_id");
+            $query->bindParam(':user_id', $row['user_id']);
+            $query->bindParam(':user_rating', $result['0']['user_rating']);
+            $query->execute();
+        }
+        
+
+        $query = $this->DBH->prepare("DELETE FROM marks WHERE event_id=:event_id"); //удаление оценок
+        $query->bindParam(':event_id', $eventID);
+        $query->execute();
+
+        $query = $this->DBH->prepare("DELETE FROM event WHERE id=:ID"); //удалить событие
+        $query->bindParam(':ID', $eventID);
         $query->execute();
     }
     public function getCategory()

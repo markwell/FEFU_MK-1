@@ -18,7 +18,19 @@ class Model
             // return $err = "Houston, we have a problem.";  
         }
 	}
-	
+	public function getHashAndID($userID)
+	{
+		$this->db_connect();
+		if (isset($_COOKIE['root']) and $_COOKIE['root'] == '1') {
+			$query = $this->DBH->prepare("SELECT * FROM staff WHERE user_id=:id LIMIT 1");
+		} else {
+			$query = $this->DBH->prepare("SELECT * FROM users WHERE user_id=:id LIMIT 1");
+		}
+		$query->bindParam(':id', $userID);
+		$query->execute();
+		$userdata = $query->fetch(PDO::FETCH_ASSOC);
+		return $userdata;
+	}
 	// метод выборки данных
 	public function get_data()
 	{

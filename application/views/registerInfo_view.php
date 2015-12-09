@@ -17,11 +17,11 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="exampleInputPassword2">Email</label>
-		    <input type="email" class="form-control" id="exampleInputPassword2" name="email" placeholder="Email" required>
+		    <input type="email" class="form-control" id="exampleInputPassword2" name="email" placeholder="Email">
 		  </div>
 		  <div class="form-group">
 		    <label for="exampleInputPassword2">Номер телефона</label>
-		    <input type="number" class="form-control" id="exampleInputPassword3" name="phone_number" placeholder="Phone number" required>
+		    <input type="number" class="form-control" id="exampleInputPassword3" name="phone_number" placeholder="Phone number">
 		  </div>
 		  <input name="submit" type="submit" class="btn btn-default" value="Готово">
 		</form>

@@ -9,7 +9,7 @@ class Controller_User extends Controller
         global $HTTP_POST_VARS;
         for ($i = 1; $i <= count($category); $i++) 
         {
-            $HTTP_POST_VARS[$i] = $category[$i - 1]['name'];
+            $HTTP_POST_VARS[$i] = $category[$i - 1];
         }
     }
     function action_showLogin()
@@ -30,6 +30,7 @@ class Controller_User extends Controller
     }
     function action_showEvent()
     {
+
         $roots = $this->model->checkRoots(); //проверяем права админа
         $event = $this->model->getEvent($_GET['id']); //берем данные из бд
         $users = $this->model->getUsers($event['0']['group_id']);
@@ -38,7 +39,7 @@ class Controller_User extends Controller
         $staff = $this->model->getHashAndIDStaff($event['0']['staff_id']);
         $group = $this->model->getTheCategory($event['0']['group_id']);
         if (isset($_GET['edit'])) { //если редактирование event
-            if (isset($_POST['submit'])) {
+            if (isset($_POST['submit'])) { //если нам что-то послали
                 foreach ($marks as $row) {
                     if ($_POST[$row['user_id']] !== '') { //редактирование посещения
                         $error = $this->model->updateVisited($row['user_id'], $_POST[$row['user_id']], $_GET['id']);    
@@ -74,6 +75,16 @@ class Controller_User extends Controller
                     $error = $this->model->deleteUsers($row['user_id']);    
                 }    
             }
+        }
+        header('Location:/shop/user/getCabinetAndShow?login='.$_COOKIE['username']);
+    }
+    function action_updateInfo()
+    {
+        if ($_POST['phone_number'] !== '') {
+        $error = $this->model->updateInfo($_POST['phone_number']);
+        }
+        if ($_POST['email'] !== '') {
+        $error = $this->model->updateInfoEmail($_POST['email']);
         }
         header('Location:/shop/user/getCabinetAndShow?login='.$_COOKIE['username']);
     }
@@ -165,7 +176,12 @@ class Controller_User extends Controller
     {
         $logout = $this->model->logOut();
         header('Location: /shop/user/showMain');
-    } 
+    }
+    // function action_editUser()
+    // {
+    //     $logout = $this->model->logOut();
+    //     header('Location: /shop/user/showMain');
+    // } 
     function action_getRatingAndShow()
     {
         @$category = $_GET['group'];

@@ -11,12 +11,12 @@
 		    <p><select size="1" name="group" class="btn  dropdown-toggle">
 		        <option value="0" selected>Не знаю в какой я группе</option>
 		        <?php
-		        	for ($i=1; $i <= count($HTTP_POST_VARS); $i++) { 
-		        		if (isset($HTTP_POST_VARS[$i]))  {
+		          for ($i=1; $i <= count($HTTP_POST_VARS); $i++) { 
+		            if (isset($HTTP_POST_VARS[$i]['name']))  {
 		        ?>
-		        <option value="<?php echo $i;?>"><?php echo $HTTP_POST_VARS[$i];?></option>
+		        <option value="<?php echo $HTTP_POST_VARS[$i]['id'];?>"><?php echo $HTTP_POST_VARS[$i]['name'];?></option>
 		        <?php 
-		        	} } unset($HTTP_POST_VARS); 
+		          } } unset($HTTP_POST_VARS); 
 		        ?>
 		    </select></p>
 		    </div>
