@@ -35,4 +35,11 @@ class Controller_Timetable extends Controller
             header('Location:/shop/timetable/showTimetable');
         }
     }
+    function action_deleteEvent()
+    {   
+        if (isset($_POST['submit'])) {
+            $this->model->deleteEvent($_GET['id']);
+            header('Location:/shop/timetable/showTimetable');
+        }
+    }
 }

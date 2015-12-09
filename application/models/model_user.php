@@ -218,7 +218,7 @@ class Model_User extends Model
     }
     public function getRating()
     {
-        $query = $this->DBH->prepare("SELECT * FROM users ORDER BY user_rating DESC");
+        $query = $this->DBH->prepare("SELECT * FROM users WHERE user_status='1' ORDER BY user_rating DESC");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -233,7 +233,7 @@ class Model_User extends Model
     }
     public function getUsers($group_id)
     {
-        $query = $this->DBH->prepare("SELECT * FROM users WHERE group_id=:group_id");
+        $query = $this->DBH->prepare("SELECT * FROM users WHERE group_id=:group_id AND user_status='1'");
         $query->bindParam(':group_id', $group_id);
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -264,7 +264,7 @@ class Model_User extends Model
     }
     public function getCategoryRating($category)
     {
-        $query = $this->DBH->prepare("SELECT * FROM users WHERE group_id = :category ORDER BY user_rating DESC");
+        $query = $this->DBH->prepare("SELECT * FROM users WHERE group_id = :category AND user_status='1' ORDER BY user_rating DESC");
         $query->bindParam(':category', $category);
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);

@@ -38,6 +38,15 @@ class Model_Timetable extends Model
         $lastid = $this->DBH->lastInsertId();
         $this->addMark($lastid, $groupID);
     }
+    public function deleteEvent($eventID)
+    {
+        $query = $this->DBH->prepare("DELETE FROM event WHERE id=:ID");
+        $query->bindParam(':ID', $eventID);
+        $query->execute();
+        $query = $this->DBH->prepare("DELETE FROM marks WHERE event_id=:event_id");
+        $query->bindParam(':event_id', $eventID);
+        $query->execute();
+    }
     public function getCategory()
     {
         $query = $this->DBH->prepare("SELECT id, name FROM category");
