@@ -24,9 +24,15 @@ class Controller_Timetable extends Controller
 	function action_showTimetable()
     {	
         $message = $this->action_checkUser();
-        echo $message;
-        break;
-
+        // if ($message) {
+        //     $root = $this->checkRoot();
+        //     $event = $this->model->getEvent();
+        //     $event['root'] = $root;
+        //     $this->view->generate('timetable_view.php', 'template_view.php', $event);
+        // } else {
+        //     $message = "Авторизуйтесь пожалуйста.";
+        //     $this->view->generate('login_view.php', 'template_view.php', $message);
+        // }
         $root = $this->checkRoot();
         $event = $this->model->getEvent();
         $event['root'] = $root;

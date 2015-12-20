@@ -67,7 +67,8 @@ class Model_User extends Model
             $query->bindParam(":email", $email);
             $query->bindParam(":phone_number", $phone_number);
             $query->bindParam(":middle_name", $middle_name);
-            $query->execute();   
+            $query->execute(); 
+            setcookie("login_temp", '', time() + 60 * 60 * 24 * 30, "/");  
         } 
         return null; 
     }

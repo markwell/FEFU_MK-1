@@ -18,7 +18,7 @@ class Model
             // return $err = "Houston, we have a problem.";  
         }
 	}
-	public function getHashAndID($userID)
+	public function getUserHashAndID($userID)
 	{
 		$this->db_connect();
 		if (isset($_COOKIE['root']) and $_COOKIE['root'] == '1') {

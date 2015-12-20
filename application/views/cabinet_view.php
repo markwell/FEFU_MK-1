@@ -16,7 +16,7 @@
     				}
     				
     			}
-		 	}
+		 	  }
     		?>
     	</td>
     	<td>
@@ -27,9 +27,27 @@
     				}
     				
     			}
-		 	}
+		 	  }
     		?>
     	</td>
+      <!-- <td> //выбор группы или админ аккаунта
+        <?php 
+          foreach ($data['unconfirmedUsers'] as $row) { ?>
+            <div class="btn-group">
+            <p><select size="1" name="group" class="btnn  dropdown-toggle">
+                <?php global $HTTP_POST_VARS;
+                  for ($i=1; $i <= count($HTTP_POST_VARS); $i++) { 
+                    if (isset($HTTP_POST_VARS[$i]['name']))  {
+                ?>
+                <option value="<?php echo $HTTP_POST_VARS[$i]['id'];?>"><?php echo $HTTP_POST_VARS[$i]['name'];?></option>
+                <?php 
+                  } } unset($HTTP_POST_VARS); 
+                ?>
+                <option value="0" selected>Администратор</option>
+            </select></p>
+            </div><br/>
+        <?php } ?>
+      </td> -->
     	<td>
     		<?php 
     		foreach ($data['unconfirmedUsers'] as $row) { ?>
@@ -95,7 +113,7 @@
 		  if ($data['roots']=='0') { ?>
             <span class="create_event_show2 btn btn-default">Изменить информацию</span>
 		  <?php } ?>
-		  <a class="btn btn-default" href="/shop/user/logoutuser">Выход из профиля</a>
+		  <a class="btn btn-default" href="/shop/user/logoutUserHeader">Выход из профиля</a>
 		 </div>
 		 <div>
 		 <br/>
