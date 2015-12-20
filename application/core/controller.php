@@ -15,7 +15,7 @@ class Controller
 	}
 	function action_checkUser()
 	{
-	    $userdata = $this->model->getUserHashAndID(intval($_COOKIE['id']));
+	    @$userdata = $this->model->getUserHashAndID(intval($_COOKIE['id']));
 	    if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) {
 	        if (($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['user_id'] !== $_COOKIE['id'])) {
 	            setcookie("id", "", time() - 3600*24*30*12, "/");

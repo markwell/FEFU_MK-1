@@ -9,10 +9,6 @@
 	  <meta charset="utf-8">
 	  <title>Мастер-Классы</title>
 	  <link href="../css/bootstrap.css" rel="stylesheet">
-
-   
-    
-	  
    </head>
 
    <body>
@@ -54,20 +50,51 @@
 	<script src="../js/main_scrolling.js"></script>
 	<script src="../js/moment.js"></script>
   <script src="../js/responsive-calendar.js"></script>
+  <?php $currentdate = date('Y-m'); $link = '/shop/user/showevent?id='; ?>
     <script type="text/javascript">
       $(document).ready(function () {
         $(".responsive-calendar").responsiveCalendar({
-          time: '2013-05',
-          events: {
-            "2013-04-30": {"number": '32423sdgsd', "url": "http://w3widgets.com/responsive-slider"},
-            "2013-04-30": {"number": '32423sdgsd', "url": "http://w3widgets.com/responsive-slider"},
-            "2013-04-26": {"number": 1, "url": "http://w3widgets.com"}, 
-            "2013-05-03":{"number": 1}, 
-            "2013-06-12": {}}
+          time: '<?php echo $currentdate ?>',
+           events: {
+           <?php foreach ($data as $key) { 
+
+            ?>
+            "<?php echo $data['0']['date'] ?>":{"number": '<?php echo $data[$key]["date"] ?>', "url": "<?php echo $link.$key[$key]['id'] ?>"},
+                   <?php } ?>
+                   }
         });
       });
     </script>
   
-
+<?php
+        /*$d = 1;
+        $i = 1;
+        $currentdate = date('Y-m-d');
+        $date = date('jS MS');
+        while ($i<25)
+        { 
+           echo ' 
+           <div class="col-md-2 calendar_day">
+               <div class="date">
+                   <p class="lead">'.$date.'</p>
+               </div>
+               <div class="scroll_image"></div>
+               <div class="list_events">
+                   <span>';
+                   foreach ($data as $key) {
+                    if ($key['date'] == $currentdate) {
+                    echo '<a class="btn" href="/shop/user/showevent?id='.$key['id'].'">'.$key['name']."</a><br />";
+                    }
+                   }
+                 echo "  
+                   </span>
+               </div>
+           </div>";
+           $currentdate = date ('Y-m-d', strtotime ('+'.$i.' days'));
+           $date = date('jS MS', strtotime ('+'.$i.' days'));
+           $d++;
+           $i++;
+        }*/
+        ?>
    </body>
 </html>
