@@ -50,17 +50,23 @@
 	<script src="../js/main_scrolling.js"></script>
 	<script src="../js/moment.js"></script>
   <script src="../js/responsive-calendar.js"></script>
-  <?php $currentdate = date('Y-m'); $link = '/shop/user/showevent?id='; ?>
+  <?php $currentdate = date('Y-m'); $link = '/shop/user/showevent?id=';?>
     <script type="text/javascript">
       $(document).ready(function () {
         $(".responsive-calendar").responsiveCalendar({
           time: '<?php echo $currentdate ?>',
            events: {
-           <?php foreach ($data as $key) { 
-
-            ?>
-            "<?php echo $data['0']['date'] ?>":{"number": '<?php echo $data[$key]["date"] ?>', "url": "<?php echo $link.$key[$key]['id'] ?>"},
-                   <?php } ?>
+       "<?php echo $data['0']['date'] ?>":{"number": '<?php echo $data["0"]["name"] ?>', "url": "<?php echo $link.$data['0']['id'] ?>"},
+       "<?php echo $data['1']['date'] ?>":{"number": '<?php echo $data["1"]["name"] ?>', "url": "<?php echo $link.$data['1']['id'] ?>"},
+       "<?php echo $data['2']['date'] ?>":{"number": '<?php echo $data["2"]["name"] ?>', "url": "<?php echo $link.$data['2']['id'] ?>"},
+       "<?php echo $data['3']['date'] ?>":{"number": '<?php echo $data["3"]["name"] ?>', "url": "<?php echo $link.$data['3']['id'] ?>"},
+       "<?php echo $data['4']['date'] ?>":{"number": '<?php echo $data["4"]["name"] ?>', "url": "<?php echo $link.$data['4']['id'] ?>"},
+       "<?php echo $data['5']['date'] ?>":{"number": '<?php echo $data["5"]["name"] ?>', "url": "<?php echo $link.$data['5']['id'] ?>"},
+       "<?php echo $data['6']['date'] ?>":{"number": '<?php echo $data["6"]["name"] ?>', "url": "<?php echo $link.$data['6']['id'] ?>"},
+       "<?php echo $data['7']['date'] ?>":{"number": '<?php echo $data["7"]["name"] ?>', "url": "<?php echo $link.$data['7']['id'] ?>"},
+       "<?php echo $data['8']['date'] ?>":{"number": '<?php echo $data["8"]["name"] ?>', "url": "<?php echo $link.$data['8']['id'] ?>"},
+       "<?php echo $data['9']['date'] ?>":{"number": '<?php echo $data["9"]["name"] ?>', "url": "<?php echo $link.$data['9']['id'] ?>"},
+       "<?php echo $data['10']['date'] ?>":{"number": '<?php echo $data["10"]["name"] ?>', "url": "<?php echo $link.$data['10']['id'] ?>"},
                    }
         });
       });
